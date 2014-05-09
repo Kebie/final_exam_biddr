@@ -1,0 +1,28 @@
+%h1 Listing auctions
+
+%table.table
+  %tr
+    %th Title
+    %th Details
+    %th Ends on
+    %th Current High Bid
+    %th Reserve price
+    %th User
+    %th
+    %th
+    %th
+
+  - @auctions.each do |auction|
+    %tr
+      %td= link_to auction.title, auction
+      %td= auction.details
+      %td= auction.ends_on
+      %td= number_to_currency auction.current_high_bid
+      %td= number_to_currency auction.reserve_price
+      %td= auction.user.first_name
+      %td= link_to 'Edit', edit_auction_path(auction)
+      %td= link_to 'Destroy', auction, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Auction', new_auction_path

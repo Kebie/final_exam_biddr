@@ -1,0 +1,13 @@
+= form_for [@auction, @bid] do |f|
+  - if @bid.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@bid.errors.count, "error")} prohibited this bid from being saved:"
+      %ul
+        - @bid.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :amount
+    = f.text_field :amount, class: "form-control"
+  .actions
+    = f.submit 'BID!', class: "btn btn-primary"

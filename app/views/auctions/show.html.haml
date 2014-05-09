@@ -1,0 +1,38 @@
+%p#notice= notice
+
+%h1= @auction.title
+
+%h2 
+  Highest bid:
+  = number_to_currency @auction.current_high_bid
+
+
+%p
+  %b Details:
+  = @auction.details
+%p
+  %b Ends on:
+  = @auction.ends_on
+%p
+  %b Reserve price:
+  = number_to_currency @auction.reserve_price
+
+%p
+
+
+%h2 Add a Bid
+
+= render(:partial => "bids/form")
+
+
+%h2 Bids
+- if @auction.bids
+  = render @auction.bids
+- else
+  %p NO BIDS YET!
+
+
+
+= link_to 'Edit', edit_auction_path(@auction)
+\|
+= link_to 'Back', auctions_path
